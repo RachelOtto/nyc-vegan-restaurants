@@ -1,0 +1,15 @@
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args:
+  - gcloud 
+  - functions
+  - deploy 
+  - places_to_bq   
+  - --gen2 
+  - --region=us-central1   
+  - --source=.
+  - --trigger-http
+  - --runtime=python311   
+  - --entry-point=places_function      
+  - --allow-unauthenticated  
+  - --set-env-vars=PLACES_API_KEY=${PLACES_API_KEY},BQ_DATASET=${BQ_DATASET},BQ_TABLE=${BQ_TABLE},GCP_PROJECT=${GCP_PROJECT}
